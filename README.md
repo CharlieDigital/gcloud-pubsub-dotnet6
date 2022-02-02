@@ -54,3 +54,5 @@ dotnet run
 ```
 
 Then you can trigger messages from the publisher to the subscriber by simply typing messages at the command line and pressing ENTER.
+
+If you're planning on building multiple microservices (for example, using Google Cloud Run), then you can also containerize the other parts and add them to the `docker-compose.yaml` file.
