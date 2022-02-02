@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+  google-pub-sub:
+    image: messagebird/gcloud-pubsub-emulator:latest
+    environment:
+      - PUBSUB_PROJECT1=gps-demo,test-pub:test-sub
+    expose:
+      - 8681
+    ports:
+      - "8681:8681"

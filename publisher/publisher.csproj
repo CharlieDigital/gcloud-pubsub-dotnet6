@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="contrib.grpc.core.m1" Version="2.41.0" />
+    <PackageReference Include="google.cloud.pubsub.v1" Version="2.7.0" />
+  </ItemGroup>
+
+</Project>
