@@ -1,10 +1,10 @@
-﻿// See https://aka.ms/new-console-template for more information
-using Google.Api.Gax;
+﻿using Google.Api.Gax;
 using Google.Cloud.PubSub.V1;
 
 Console.WriteLine("Starting subscriber...");
 
 var projectId = "gps-demo";
+var topicId = "test-pub";
 var subscriptionId = "test-sub";
 
 var subscriberService = await new SubscriberServiceApiClientBuilder
@@ -13,6 +13,13 @@ var subscriberService = await new SubscriberServiceApiClientBuilder
 }.BuildAsync();
 
 var subscriptionName = new SubscriptionName(projectId, subscriptionId);
+var topicName = new TopicName(projectId, topicId);
+
+if (subscriberService.GetSubscription(subscriptionName) == null)
+{
+    subscriberService.CreateSubscription(subscriptionName,
+        topicName, pushConfig: null, ackDeadlineSeconds: 60);
+}
 
 var subscriber = await SubscriberClient.CreateAsync(
     subscriptionName,

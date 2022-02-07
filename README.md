@@ -27,7 +27,7 @@ This setup allows you to better understand how to interact with Google Cloud Pub
 See the docs here if you'd like to learn more: https://cloud.google.com/pubsub/docs/overview
 ## Running the Code
 
-To run this sandbox code, start the docker image for th Google Cloud Pub/Sub emulator from the root directory:
+To run this sandbox code, start the docker image for the [Google Cloud Pub/Sub emulator](https://cloud.google.com/pubsub/docs/emulator) from the root directory:
 
 ```
 docker-compose up
@@ -43,6 +43,7 @@ Next, run the publisher and the subscriber:
 
 ```
 cd publisher
+export PUBSUB_EMULATOR_HOST=localhost:8681
 dotnet run
 ```
 
@@ -50,6 +51,7 @@ and:
 
 ```
 cd subscriber
+export PUBSUB_EMULATOR_HOST=localhost:8681
 dotnet run
 ```
 
