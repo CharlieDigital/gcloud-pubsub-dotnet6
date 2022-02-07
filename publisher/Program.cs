@@ -1,5 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-using Google.Api.Gax;
+﻿using Google.Api.Gax;
 using Google.Cloud.PubSub.V1;
 
 Console.WriteLine("Starting publisher...");
@@ -14,13 +13,20 @@ var publisherService = await new PublisherServiceApiClientBuilder
 
 var topicName = new TopicName(projectId, topicId);
 
+if (publisherService.GetTopic(topicName) == null)
+{
+    publisherService.CreateTopic(topicName);
+}
+
 var publisher = await PublisherClient.CreateAsync(
     topicName,
     new PublisherClient.ClientCreationSettings()
         .WithEmulatorDetection(EmulatorDetection.EmulatorOrProduction));
 
-Console.WriteLine(@"Type a message and press ENTER to send.  Type 'quit' to exit
-----------------------------------");
+Console.WriteLine(
+@"Type a message and press ENTER to send.  Type 'quit' to exit
+----------------------------------"
+);
 
 while (true)
 {
@@ -28,7 +34,7 @@ while (true)
 
     await publisher.PublishAsync(text);
 
-    Console.WriteLine($"SENDING: ${text}");
+    Console.WriteLine($"SENDING: {text}");
 
     if (text?.Trim().ToLowerInvariant() == "quit")
     {
