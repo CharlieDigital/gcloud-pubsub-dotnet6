@@ -58,3 +58,13 @@ dotnet run
 Then you can trigger messages from the publisher to the subscriber by simply typing messages at the command line and pressing ENTER.
 
 If you're planning on building multiple microservices (for example, using Google Cloud Run), then you can also containerize the other parts and add them to the `docker-compose.yaml` file.
+
+See this article on issues related to running gRPC: https://danielstoyanoff.medium.com/apple-silicon-docker-dotnet-grpc-is-that-compatible-8a05f1a71d89
+
+You'll need to install `protoc` and then:
+
+```
+export PROTOBUF_PROTOC=/usr/bin/protoc
+```
+
+NOTE: When connecting directly through the host, use `PUBSUB_EMULATOR_HOST=host.docker.internal:8681`

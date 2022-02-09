@@ -1,6 +1,26 @@
 version: '3.9'
 
 services:
+  publisher:
+    image: gps-demo/publisher
+    build:
+      context: ./publisher
+    environment:
+      - PUBSUB_EMULATOR_HOST=google-pub-sub:8681
+    depends_on:
+      - google-pub-sub
+    networks:
+      - gps-demo
+  subscriber:
+    image: gps-demo/subscriber
+    build:
+      context: ./subscriber  
+    environment:
+      - PUBSUB_EMULATOR_HOST=google-pub-sub:8681
+    depends_on:
+      - google-pub-sub
+    networks:
+      - gps-demo
   google-pub-sub:
     image: messagebird/gcloud-pubsub-emulator:latest
     environment:
@@ -9,3 +29,8 @@ services:
       - 8681
     ports:
       - "8681:8681"
+    networks:
+      - gps-demo
+
+networks:
+  gps-demo:

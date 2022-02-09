@@ -1,5 +1,9 @@
 ﻿using Google.Api.Gax;
 using Google.Cloud.PubSub.V1;
+using Grpc.Core;
+using Grpc.Core.Logging;
+
+GrpcEnvironment.SetLogger(new ConsoleLogger());
 
 Console.WriteLine("Starting subscriber...");
 
