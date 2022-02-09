@@ -59,6 +59,12 @@ Then you can trigger messages from the publisher to the subscriber by simply typ
 
 If you're planning on building multiple microservices (for example, using Google Cloud Run), then you can also containerize the other parts and add them to the `docker-compose.yaml` file.
 
+The .NET Alpine image does not work correctly with the gRPC libraries so use the Debian-based images instead.  
+
+See: https://github.com/grpc/grpc/issues/21446
+
+To get it set up, you'll need to follow the notes here:
+
 See this article on issues related to running gRPC: https://danielstoyanoff.medium.com/apple-silicon-docker-dotnet-grpc-is-that-compatible-8a05f1a71d89
 
 You'll need to install `protoc` and then:
